@@ -1,6 +1,7 @@
+mod app;
 mod config;
 mod game;
 
 fn main() {
-    print!("Hello world");
+    let matches = app::cli();
 }

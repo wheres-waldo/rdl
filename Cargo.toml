@@ -3,6 +3,9 @@ name = "rdl"
 version = "0.1.0"
 authors = ["Steven Waldron <steven.waldron@pm.me>"]
 edition = "2018"
+description = "Terminal-based Doom launcher"
+repository = "https://github.com/wheres-waldo/rdl"
+license = "GPL-3.0-or-later"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -15,6 +18,7 @@ serde_derive = "1"
 ron = "0.6"
 toml = "0.5"
 directories = "3"
+clap = "2.33.*"
 
 [dependencies.cursive]
 version = "0.15"

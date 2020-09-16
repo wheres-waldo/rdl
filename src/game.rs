@@ -1,6 +1,3 @@
-use Complevel::*;
-use Iwad::*;
-
 type Wad = std::path::PathBuf;
 type Param = String;
 
@@ -10,28 +7,34 @@ pub enum Iwad {
 }
 
 pub enum Complevel {
-    Doom,
+    Doom19,
     Boom,
     MBF,
     Other(u8),
+}
+
+pub enum SourcePort {
+    PrBoomPlus,
 }
 
 pub struct Game {
     name: String,
     iwad: Iwad,
     wads: Vec<Wad>,
-    complevel: Complevel,
-    extra_params: Vec<Param>,
+    source_port: SourcePort,
+    complevel: Option<Complevel>,
+    extra_params: Option<Vec<Param>>,
 }
 
 impl Game {
     pub fn new() -> Self {
         Self {
             name: String::new(),
-            iwad: Doom,
+            iwad: Iwad::Doom,
             wads: Vec::new(),
-            complevel: Doom,
-            extra_params: Vec::new(),
+            source_port: SourcePort::PrBoomPlus,
+            complevel: None,
+            extra_params: None,
         }
     }
 }

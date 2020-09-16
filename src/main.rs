@@ -1,3 +1,6 @@
+mod config;
+mod game;
+
 fn main() {
-    println!("Hello, world!");
+    print!("Hello world");
 }

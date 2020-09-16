@@ -25,13 +25,11 @@ impl Config {
     }
 
     pub fn save_config(&self) -> Result<()> {
-        if let Some(project_dir) = ProjectDirs::from("", "", "rdl") {
-            let config = toml::to_string(self)?;
-            let mut file = File::create(project_dir.config_dir().join("config.toml"))?;
-            file.write_all(config.as_bytes()).map_err(Error::msg)
-        } else {
-            Err(Error::msg("Failed to get project dir"))
-        }
+        let project_dir = ProjectDirs::from("", "", "rdl")
+            .ok_or_else(|| Error::msg("Failed to get project dir"))?;
+        let config = toml::to_string(self)?;
+        let mut file = File::create(project_dir.config_dir().join("config.toml"))?;
+        file.write_all(config.as_bytes()).map_err(Error::msg)
     }
 
     pub fn set_wad_dir(self, wad_dir: PathBuf) -> Self {
@@ -41,9 +39,6 @@ impl Config {
     pub fn add_iwad(self, iwad: Iwad) -> Self {
         let mut iwads = self.iwads.clone();
         iwads.push(iwad);
-        Self {
-            iwads,
-            ..self
-        }
+        Self { iwads, ..self }
     }
 }

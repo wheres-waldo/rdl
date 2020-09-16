@@ -1,6 +1,9 @@
-type Wad = std::path::PathBuf;
-type Param = String;
+use serde::{Deserialize, Serialize};
 
+pub type Wad = std::path::PathBuf;
+pub type Param = String;
+
+#[derive(Serialize, Deserialize, Clone, Copy)]
 pub enum Iwad {
     Doom,
     Doom2,
